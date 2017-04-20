@@ -1,0 +1,163 @@
+    
+<!-- header 的fragment  -->   
+    <div  th:fragment="pageHeader">
+        <div class="widewrapper masthead">
+            <div class="container">
+                <a href="/" id="logo">
+                    <img th:src="@{/img/JesseYang.jpg}" src="img/JesseYang.jpg" alt="clean Blog"/>
+                </a>
+
+                <div id="mobile-nav-toggle" class="pull-right">
+                    <a href="#" data-toggle="collapse" data-target=".clean-nav .navbar-collapse">
+                        <i class="fa fa-bars"></i>
+                    </a>
+                </div>
+
+<!--                 <nav class="pull-right clean-nav">
+                    <div class="collapse navbar-collapse">
+                        <ul class="nav nav-pills navbar-nav">
+                          
+                            <li>
+                                <a href="/">主页</a>
+                            </li>
+                            <li>
+                                <a href="about.html">关于</a>
+                            </li>
+                            <li>
+                                <a href="contact.html">联系</a>
+                            </li>                        
+                        </ul>
+                    </div>
+                </nav>      -->   
+
+            </div>
+        </div>
+
+        <div class="widewrapper subheader">
+            <div class="container">
+                <div class="clean-breadcrumb">
+                    <a href="/">主页</a>
+                </div>
+                <div class="clean-breadcrumb">
+                    <a href="/articleList/">博客</a>
+                </div>
+
+<!--                 <div class="clean-searchbox">
+                    <form action="#" method="get" accept-charset="utf-8">
+                        <input class="searchfield" id="searchbox" type="text" placeholder="Search"/>
+                        <button class="searchbutton" type="submit">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </form>
+                </div> -->
+            </div>
+        </div>
+    </div>
+    
+    
+    <!-- aside 的fragment -->
+    <aside th:frament="aside" class="col-md-4 blog-aside">
+                    
+<!-- 	     <div class="aside-widget">
+	         <header>
+	             <h3>博主推荐</h3>
+	         </header>
+	         <div class="body">
+	             <ul class="clean-list">
+	                 <li><a href="">Clean - Responsive HTML5 Template</a></li>
+	                 <li><a href="">Responsive Pricing Table</a></li>
+	                 <li><a href="">Yellow HTML5 Template</a></li>
+	                 <li><a href="">Blackor Responsive Theme</a></li>
+	                 <li><a href="">Portfolio Bootstrap Template</a></li>
+	                 <li><a href="">Clean Slider Template</a></li>
+	             </ul>
+	         </div>
+	     </div> -->
+	 
+	     <div class="aside-widget">
+	         <header>
+	             <h3>最近更新</h3>
+	         </header>
+	         <div class="body">
+	             <ul class="clean-list" id="top6">
+	                 <li><a href="">Blackor Responsive Theme</a></li>
+	                 <li><a href="">Portfolio Bootstrap Template</a></li>
+	                 <li><a href="">Clean Slider Template</a></li>
+	                 <li><a href="">Clean - Responsive HTML5 Template</a></li>
+	                 <li><a href="">Responsive Pricing Table</a></li>
+	                 <li><a href="">Yellow HTML5 Template</a></li>
+	             </ul>
+	         </div>
+	     </div>
+	
+	     <div class="aside-widget">
+	         <header>
+	             <h3>标签</h3>
+	         </header>
+	         <div class="body clearfix">
+	             <ul class="tags">
+	                 <li><a href="#">JAVA</a></li>
+	                 <li><a href="#">MYSQL</a></li>
+	                 <li><a href="#">JQuery</a></li>
+	                 <li><a href="#">HTML</a></li>
+	                 <li><a href="#">SPRING</a></li>
+	                 <li><a href="#">BOOTSTRAP</a></li>
+	                 <li><a href="#">LINUX</a></li>
+	             </ul>
+	         </div>
+	     </div>
+	     
+	     <div class="aside-widget">
+	         <header>
+	             <h3>友情链接</h3>
+	         </header>
+	         <div class="body clearfix">
+	             <ul class="tags">
+	                 <li><a href="http://jasonyang.org">JasonYang's Blog</a></li>
+
+	             </ul>
+	         </div>
+	     </div>
+	 </aside>
+	 <!-- footer -->
+	 <footer>
+        <div class="widewrapper footer">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-4 footer-widget">
+                        <h3> <i class="fa fa-user"></i>JesseYang</h3>
+
+                       <p>我就是传说中玉树临风一表人才貌似潘安才比宋玉号称一朵梨花压海棠人送绰号杰西大魔王的杰西大魔王</p>
+                       <p>作为一个程序猿还是自己手动写一个博客比较靠谱。 </p>
+                       <p>自从开始工作以后越来越发现，表达能力直线下降，多的不说了先写代码吧 </p>
+                    </div>
+
+                    <div class="col-md-4 footer-widget">
+                        <h3> <i class="fa fa-pencil"></i>都会些啥</h3>
+                        <ul class="clean-list">
+                            <li>java玩了快2年了，最擅长环境变量的配置</li>
+                            <li>数据库方面精通mysql的安装卸载</li>
+                            <li>为啥学jquery因为喜欢找孙子，建议去掉parent函数</li>
+                            <li>springmvc用的特别多，所以精通它的拼写</li>
+                            <li>linux最喜欢的命令是rm -rf</li>
+                            <li>因为上一条的缘故至今仍在跑路途中</li>
+                        </ul>
+                    </div>
+
+                    <div class="col-md-4 footer-widget">
+                        <h3> <i class="fa fa-envelope"></i>联系我</h3>
+
+                        <p>如果你也是程序猿或者你对编程感兴趣------------别联系我 我的技能都是独家的不外传。</p>
+                        <p>特别希望您对本站提出建设性的意见或建议。----------当然不是建设性的也可以提，我都不会看的。</p>
+<!--                          <div class="footer-widget-icon">
+                            <i class="fa fa-facebook"></i><i class="fa fa-twitter"></i><i class="fa fa-google"></i>
+                        </div> -->
+                    </div>
+                   
+                </div>
+            </div>
+        </div>
+        <div class="widewrapper copyright">
+                Jesse Yang    20170331. huhahuhei@sina.com
+        </div>
+    </footer>

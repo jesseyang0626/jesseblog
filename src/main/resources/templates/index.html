@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="utf-8"></meta>
+    <title>JesseYang'sBlog</title>
+    <meta name="description" content=""></meta>
+    <meta name="viewport" content="width=device-width"></meta>
+
+    <!-- Bootstrap styles -->
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" href="css/bootstrap.min.css"></link>
+   
+    <!-- Font-Awesome -->
+    <link rel="stylesheet" th:href="@{/css/font-awesome/css/font-awesome.min.css}" href="css/font-awesome/css/font-awesome.min.css"></link>
+
+    <!-- Google Webfonts -->
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,600|PT+Serif:400,400italic' rel='stylesheet' type='text/css'></link>
+
+    <!-- Styles -->
+    <link rel="stylesheet" th:href="@{/css/style.css}" href="css/style.css" id="theme-styles"></link>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" href="css/style.css"></link>
+    
+    <script th:src="@{/js/jquery.min.js}" src="js/vendor/google/html5-3.6-respond-1.1.0.min.js"></script>
+
+	<script>
+	var _hmt = _hmt || [];
+	(function() {
+	  var hm = document.createElement("script");
+	  hm.src = "https://hm.baidu.com/hm.js?9ff259f6bd18ff73772230088676cd58";
+	  var s = document.getElementsByTagName("script")[0]; 
+	  s.parentNode.insertBefore(hm, s);
+	})();
+	</script>
+	
+    
+</head>
+<body>
+    <div th:replace="fragment::pageHeader"></div>
+
+
+    <div class="widewrapper main">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 blog-main">
+                    <div class="row">
+                     	<div class="col-md-6 col-sm-6">
+                            <article class=" blog-teaser">
+                                <header>
+                                    <img src="img/2.jpg" alt=""/>
+                                    <h3>哪怕最终我们都会无差别地成为一个无趣的大人，能拖延一刻，我还是会拖延一刻</h3>
+                                    <!-- <span class="meta">19 August 2015, John Doe</span> -->
+                                    <hr></hr>
+                                </header>
+                                <div class="body">
+									最好老了还是老顽童                                	
+                                </div>
+                                <div class="clearfix">
+                                  <!--   <a href="single.html" class="btn btn-clean-one">Read more</a> -->
+                                </div>
+                            </article>
+                        </div>
+                        <div class="col-md-6 col-sm-6">
+                            <article class=" blog-teaser">
+                                <header>
+                                    <img src="img/1.jpg" alt=""/>
+                                    <h3>语言是不用负责任的，而行为是需要付出代价的</h3>
+                                    <!-- <span class="meta">19 August 2015, John Doe</span> -->
+                                    <hr></hr>
+                                </header>
+                                <div class="body">
+									多做少说咯~                	
+                                </div>
+                                <div class="clearfix">
+                                  <!--   <a href="single.html" class="btn btn-clean-one">Read more</a> -->
+                                </div>
+                            </article>
+                        </div>
+                       
+                    </div>
+                    
+
+                   <!--  <div class="row">
+                        <div class="col-md-6 col-sm-6">
+                            <article class="blog-teaser">
+                                <header>
+                                    <img src="img/3.jpg" alt=""/>
+                                    <h3><a href="single.html">Blackor - Responsive HTML5 Theme</a></h3>
+                                    <span class="meta">19 August 2015, John Doe</span>
+                                    <hr></hr>
+                                </header>
+                                <div class="body">
+                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatum, sit. Doloribus dolores neque eos. Velit eveniet, necessitatibus aut sit tenetur perferendis! Commodi pariatur dignissimos, quis sequi odit iusto cumque quod!
+                                </div>
+                                <div class="clearfix">
+                                    <a href="single.html" class="btn btn-clean-one">Read more</a>
+                                </div>
+                            </article>
+                        </div>
+                        <div class="col-md-6 col-sm-6">
+                            <article class="blog-teaser">
+                                <header>
+                                    <img src="img/4.jpg" alt=""/>
+                                   <h3><a href="single.html">Yellow - HTML5 Template</a></h3>
+                                    <span class="meta">19 August 2015, John Doe</span>
+                                    <hr></hr>
+                                </header>
+                                <div class="body">
+                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatum, sit. Doloribus dolores neque eos. Velit eveniet, necessitatibus aut sit tenetur perferendis! Commodi pariatur dignissimos, quis sequi odit iusto cumque quod!
+                                </div>
+                                <div class="clearfix">
+                                    <a href="single.html" class="btn btn-clean-one">Read more</a>
+                                </div>
+                            </article>
+                        </div>
+                    </div> -->
+
+
+                </div>
+                <div th:replace="fragment::aside"></div>
+            </div>
+        </div>
+    </div>
+
+    <footer th:replace="fragment::footer"></footer>
+    
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/modernizr.js"></script>
+
+	<script type="text/javascript">
+	/*<![CDATA[*/
+ 		var top6 =""; 
+	$(function(){
+		$("#top6").empty();
+		$.ajax({
+			url:"/article/getTop6",
+			dataType:"json",
+			success:function(data){
+				for(var i=0;i<6;i++){
+					if(data.content[i] != null)
+					top6 += '<li><a href="/article/'+data.content[i].id+'">'+data.content[i].title+'</a></li>';
+				
+				}
+				$("#top6").append(top6);
+			}
+		});
+	}); 
+	
+		/*]]>*/
+	</script>
+
+
+</body>
+</html>

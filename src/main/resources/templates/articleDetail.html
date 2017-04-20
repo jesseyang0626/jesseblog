@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8"></meta>
+    <title>Home</title>
+     <meta name="description" content=""></meta>
+    <meta name="viewport" content="width=device-width"></meta>
+
+    <!-- Bootstrap styles -->
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" href="css/bootstrap.min.css"></link>
+   
+    <!-- Font-Awesome -->
+    <link rel="stylesheet" th:href="@{/css/font-awesome/css/font-awesome.min.css}" href="css/font-awesome/css/font-awesome.min.css"></link>
+
+    <!-- Google Webfonts -->
+  <!--   <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,600|PT+Serif:400,400italic' rel='stylesheet' type='text/css'></link> -->
+
+    <!-- Styles -->
+    <link rel="stylesheet" th:href="@{/css/style.css}" href="css/style.css" id="theme-styles"></link>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" href="css/style.css"></link>
+    
+    <script th:src="@{/js/jquery.min.js}" src="js/vendor/google/html5-3.6-respond-1.1.0.min.js"></script>
+	<script th:src="@{/js/bootstrap-paginator.min.js}" src=""></script>
+    <script>
+		var _hmt = _hmt || [];
+		(function() {
+		  var hm = document.createElement("script");
+		  hm.src = "https://hm.baidu.com/hm.js?9ff259f6bd18ff73772230088676cd58";
+		  var s = document.getElementsByTagName("script")[0]; 
+		  s.parentNode.insertBefore(hm, s);
+		})();
+	</script>
+</head>
+<body>
+    <div th:replace="fragment::pageHeader"></div>
+
+    <div class="widewrapper main">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 blog-main">
+                    <article class="blog-post">
+                        <header>
+                           
+<!--                        <div class="lead-image">
+                                <img src="img/single-post.jpg" alt="" class="img-responsive"/>
+                                
+                            </div> -->
+                        </header>
+                        <div class="body">
+                            <h1 id="artcileTitle" th:text="${session.article.title}">Responsive HTML5 Template</h1>
+                            <div class="meta">
+                                <i class="fa fa-user"></i> Jesse Yang <i class="fa fa-calendar"></i><span  th:text="${session.article.createDate}">23 Agustus 2015</span><i class="fa fa-comments"></i><span class="data"><a href="#comments">Comments</a></span>
+                            </div>
+                            <div id="getContent" style="display:none" th:text="${session.article.content}"></div>
+                            <div id="articleContent">
+	                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem quas voluptatem et minima quo amet ducimus. Voluptatum soluta tenetur ducimus fugiat, sint voluptate eveniet adipisci nulla asperiores distinctio laudantium eos. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Provident tenetur, consectetur dolores nostrum, numquam facere a dicta eum nam suscipit consequuntur dolorem aspernatur molestias vero quo id tempore vel possimus.</p>
+	
+	                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem quas voluptatem et minima quo amet ducimus. Voluptatum soluta tenetur ducimus fugiat, sint voluptate eveniet adipisci nulla asperiores distinctio laudantium eos. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Provident tenetur, consectetur dolores nostrum, numquam facere a dicta eum nam suscipit consequuntur dolorem aspernatur molestias vero quo id tempore vel possimus.</p>
+	
+	
+	                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem quas voluptatem et minima quo amet ducimus. Voluptatum soluta tenetur ducimus fugiat, sint voluptate eveniet adipisci nulla asperiores distinctio laudantium eos. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Provident tenetur, consectetur dolores nostrum, numquam facere a dicta eum nam suscipit consequuntur dolorem aspernatur molestias vero quo id tempore vel possimus.</p>
+	
+	                             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem quas voluptatem et minima quo amet ducimus. Voluptatum soluta tenetur ducimus fugiat, sint voluptate eveniet adipisci nulla asperiores.</p>
+							</div>
+                        </div>
+                    </article>
+
+<!--                     <aside class="social-icons clearfix">
+                        <h3>Share on </h3> 
+                        <a href="#"><i class="fa fa-facebook"></i></a> <a href="#"><i class="fa fa-twitter"></i></a> <a href="#"><i class="fa fa-google"></i></a>
+                    </aside>
+ -->
+                    <aside class="comments" id="comments">
+                        <hr/>
+
+                        <h2><i class="fa fa-comments"></i> 评论	</h2>
+
+		 				<div id="commentDiv">
+                        <article class="comment">
+                            <header class="clearfix">
+                                <!-- <img src="img/avatar.png" alt="A Smart Guy" class="avatar"/> -->
+                                <div class="meta">
+                                    <h3>John Do</h3>
+                                    <span class="date">
+                                        24 August 2015
+                                    </span>
+                                    <span class="separator">
+                                        -
+                                    </span>
+                                    
+                                </div>
+                            </header>
+                             <div class="body">
+                               Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facere sit perspiciatis debitis, vel ducimus praesentium expedita, assumenda ipsum cum corrupti dolorum modi. Rem ipsam similique sapiente obcaecati tenetur beatae voluptatibus.
+                            </div>
+                        </article>
+               			</div>
+       				<div class="paging" id="paging">
+						<ul id="pageLimit"></ul> 
+					</div>
+                    </aside>
+
+                    <aside class="create-comment" id="create-comment">
+                        <hr/>    
+
+                        <h2><i class="fa fa-pencil"></i>添加评论</h2>
+
+                        <form action="/comment/add" method="post" accept-charset="utf-8" id="comform">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <input type="text" name="name" id="comment-name" placeholder="昵称" class="form-control input-lg"/> 
+                                    <input type="text" name="articleId" th:value="${session.article.id}" style="display:none"/>   
+                                </div>
+<!--                                 <div class="col-md-6">
+                                    <input type="email" name="email" id="comment-email" placeholder="Email" class="form-control input-lg"/>    
+                                </div> -->
+                            </div>
+
+                         <!--    <input type="url" name="name" id="comment-url" placeholder="Website" class="form-control input-lg"/>
+ -->
+                            <textarea rows="10" name="message" id="comment-body" placeholder="说点啥" class="form-control input-lg"></textarea>
+
+                            <div class="buttons clearfix">
+                                <button id="subbtn" class="btn btn-xlarge btn-clean-one">提交</button>
+                            </div>
+                        </form>
+                    </aside>
+                </div>
+                <div th:replace="fragment::aside"></div>
+            </div>
+        </div>
+    </div>
+
+    <footer th:replace="fragment::footer"></footer>
+	
+		<script th:inline="javascript" type="text/javascript">
+		/*<![CDATA[*/
+//	var content = $("#getContent").text();
+ 	$(function(){
+		$("#articleContent").html([[${session.article.content}]]);
+//		console.log(content);
+		console.log([[${session.comments.content}]].length);
+		var compage =  [[${session.comments}]];
+		console.log(compage);
+		var com = [[${session.comments.content}]];
+		$("#commentDiv").empty();
+		var comments = "";
+ 		for(var i=0;i<[[${session.comments.content}]].length;i++){
+			comments +='<article class="comment"><header class="clearfix"><div class="meta"><h3>'+com[i].nickname+'</h3><span class="date">'+com[i].createDate+'</span></div></header><div class="body">'+com[i].content+'</div></article>';
+		} 
+		console.log(comments);
+		$("#commentDiv").html(comments);
+		comments="";
+		
+		//分页div
+		if(compage.totalPages>0){
+			console.log(compage);
+	 		$('#pageLimit').bootstrapPaginator({    
+			    currentPage: 1,    
+			    totalPages: compage.totalPages,    
+			    size:"normal",    
+			    bootstrapMajorVersion: 3,    
+			    alignment:"center",    
+			    numberOfPages:5, 
+			    itemTexts: function (type, page, current) {        
+			        switch (type) {            
+			        case "first": return "首页";            
+			        case "prev": return "上一页";            
+			        case "next": return "下一页";            
+			        case "last": return "末页";            
+			        case "page": return page;
+			        }
+			    },
+		/* 	    pageUrl: function(type, page, current){              
+			   	return "/article/page/"+page;  
+		        }   
+		*/
+		        onPageClicked:function(event, originalEvent, type, page){
+		        	getCommentsByPage(page);
+			    }
+			});
+		}
+		
+	});
+	
+	
+	
+	//获取评论列表
+		var comments="";
+
+		function getCommentsByPage(page){
+		$.ajax({
+			url:"/comment/findByPage/"+page,
+			dataType:"json",
+			success:function(data){
+				$("#commentDiv").empty();
+				comments="";
+				var com = data.content;
+				var commentsLength = data.content.length;
+				for(var i=0;i<commentsLength;i++){
+				/* 	console.log(data.content[i].createDate);
+					var date = data.content[i].createDate.substring(0,11); */
+					/* var date = data.content[i].createDate.substring(0,11); */
+					comments +='<article class="comment"><header class="clearfix"><div class="meta"><h3>'+com[i].nickname+'</h3><span class="date">'+com[i].createDate+'</span></div></header><div class="body">'+com[i].content+'</div></article>';
+				}
+				console.log(comments);
+				$("#commentDiv").html(comments);
+				$('#pageLimit').bootstrapPaginator({    
+				    currentPage: data.number+1,    
+				    totalPages: data.totalPages,    
+				    size:"normal",    
+				    bootstrapMajorVersion: 3,    
+				    alignment:"center",    
+				    numberOfPages:5, 
+				    itemTexts: function (type, page, current) {        
+				        switch (type) {            
+				        case "first": return "首页";            
+				        case "prev": return "上一页";            
+				        case "next": return "下一页";            
+				        case "last": return "末页";            
+				        case "page": return page;
+				        }
+				    },
+			/* 	    pageUrl: function(type, page, current){              
+				   	return "/article/page/"+page;  
+			        }   */
+			        onPageClicked:function(event, originalEvent, type, page){
+			        	getCommentsByPage(page);
+				    }
+				});
+			}
+		});
+	}
+	 
+		var top6 =""; 
+		$(function(){
+			$("#top6").empty();
+			$.ajax({
+				url:"/article/getTop6",
+				dataType:"json",
+				success:function(data){
+					for(var i=0;i<6;i++){
+						if(data.content[i] != null)
+						top6 += '<li><a href="/article/'+data.content[i].id+'">'+data.content[i].title+'</a></li>';
+					
+					}
+					$("#top6").append(top6);
+				}
+			});
+		});
+		
+		//提交按钮
+		$("#subbtn").click(function(e){
+			console.log($("#comment-name").val().length);
+			if($("#comment-name").val() == ""){
+				alert("写个昵称吧");
+				e.preventDefault();
+			}else if($("#comment-name").val().length >15){
+				alert("老哥你这名字老长了，再短点呗");
+				e.preventDefault();
+			}else if($("#comment-body").val() == ""){
+				alert("还没写字呢");
+				e.preventDefault();
+			}else if($("#comment-body").val().length > 280){
+				alert("老哥这也太长了，再少点");
+				e.preventDefault();
+			}
+		});
+	/*]]>*/
+	</script>
+
+</body>
+</html>

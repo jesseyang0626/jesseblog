@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="utf-8"></meta>
+    <title>文章列表</title>
+    <meta name="description" content=""></meta>
+    <meta name="viewport" content="width=device-width"></meta>
+
+    <!-- Bootstrap styles -->
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" href="css/bootstrap.min.css"></link>
+   
+    <!-- Font-Awesome -->
+    <link rel="stylesheet" th:href="@{/css/font-awesome/css/font-awesome.min.css}" href="css/font-awesome/css/font-awesome.min.css"></link>
+
+    <!-- Google Webfonts -->
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,600|PT+Serif:400,400italic' rel='stylesheet' type='text/css'></link>
+
+    <!-- Styles -->
+    <link rel="stylesheet" th:href="@{/css/style.css}" href="css/style.css" id="theme-styles"></link>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" href="css/style.css"></link>
+    
+    <script th:src="@{/js/jquery.min.js}" src="js/vendor/google/html5-3.6-respond-1.1.0.min.js"></script>
+	<script th:src="@{/js/bootstrap-paginator.min.js}" src=""></script>
+    
+    <script>
+	var _hmt = _hmt || [];
+	(function() {
+	  var hm = document.createElement("script");
+	  hm.src = "https://hm.baidu.com/hm.js?9ff259f6bd18ff73772230088676cd58";
+	  var s = document.getElementsByTagName("script")[0]; 
+	  s.parentNode.insertBefore(hm, s);
+	})();
+	</script>
+    
+</head>
+<body>
+    <div th:replace="fragment::pageHeader"></div>
+
+
+    <div class="widewrapper main">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 blog-main">
+                    <div id="articleTitles" class="row">
+                        <a href="#" class="list-group-item"><span class="badge">新</span>文章列表  此处应该有很多文章标题</a>
+						<a href="#" class="list-group-item"><span class="badge">新</span>文章列表  此处应该有很多文章标题</a>
+						<a href="#" class="list-group-item">文章列表  此处应该有很多文章标题</a>
+						<a href="#" class="list-group-item">文章列表  此处应该有很多文章标题</a>
+						<a href="#" class="list-group-item">文章列表  此处应该有很多文章标题</a>
+						<button id="getArt" style="display:none"></button>
+                        <!-- <div class="col-md-6 col-sm-6">
+                            <article class=" blog-teaser">
+                                <header>
+                                    <img src="img/1.jpg" alt=""/>
+                                    <h3><a href="single.html">How to Create Template</a></h3>
+                                    <span class="meta">19 August 2015, John Doe</span>
+                                    <hr></hr>
+                                </header>
+                                <div class="body">
+                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatum, sit. Doloribus dolores neque eos. Velit eveniet, necessitatibus aut sit tenetur perferendis! Commodi pariatur dignissimos, quis sequi odit iusto cumque quod!
+                                </div>
+                                <div class="clearfix">
+                                    <a href="single.html" class="btn btn-clean-one">Read more</a>
+                                </div>
+                            </article>
+                        </div> -->
+
+                       
+                    </div>
+					<div id="paging">
+						<ul id="pageLimit"></ul> 
+					</div>
+<!--                     <div class="paging">
+                        <a href="#" class="older">Older Post</a>
+                    </div> -->
+                </div>
+                
+                <div th:replace="fragment::aside"></div> 
+            </div>
+        </div>
+    </div>
+
+    <footer th:replace="fragment::footer"></footer>
+    
+<!--     <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/modernizr.js"></script> -->
+
+	<script type="text/javascript">
+	/*<![CDATA[*/
+	var titles = "";
+/* 	$(function(){
+		$.ajax({
+			url:"/article/getAll",
+			dataType:"json",
+			success:function(data){
+				$("#articleTitles").empty();
+				var articleListLength = data.length;
+				for(var i=0;i<articleListLength;i++){
+					var date = data[i].createDate.substring(0,11);
+					console.log(date.substring(0,11));
+					titles += '<a href="/article/'+data[i].id+'" class="list-group-item">' +data[i].title+'<span class="badge">'+date+'</span></a>';
+				}
+				$("#articleTitles").html(titles);
+			}
+		});
+		
+	}); */
+	
+	$(function(){
+		$("#getArt").click();
+	});
+	
+	$("#getArt").click(function(){
+		 getArticleByPage(1);
+	});
+	
+	function getArticleByPage(page){
+		$.ajax({
+			url:"/article/page/"+page,
+			dataType:"json",
+			success:function(data){
+				$("#articleTitles").empty();
+				titles="";
+				var articleListLength = data.content.length;
+				for(var i=0;i<articleListLength;i++){
+					console.log(data.content[i].createDate);
+					var date = data.content[i].createDate.substring(0,11);
+					/* var date = data.content[i].createDate.substring(0,11); */
+					console.log(date.substring(0,11));
+					titles += '<a href="/article/'+data.content[i].id+'" class="list-group-item">' +data.content[i].title+'<span class="badge">'+date+'</span></a>';
+				}
+				console.log(titles);
+				$("#articleTitles").html(titles);
+				$('#pageLimit').bootstrapPaginator({    
+				    currentPage: data.number+1,    
+				    totalPages: data.totalPages,    
+				    size:"normal",    
+				    bootstrapMajorVersion: 3,    
+				    alignment:"center",    
+				    numberOfPages:5, 
+				    itemTexts: function (type, page, current) {        
+				        switch (type) {            
+				        case "first": return "首页";            
+				        case "prev": return "上一页";            
+				        case "next": return "下一页";            
+				        case "last": return "末页";            
+				        case "page": return page;
+				        }
+				    },
+			/* 	    pageUrl: function(type, page, current){              
+				   	return "/article/page/"+page;  
+			        }   */
+			        onPageClicked:function(event, originalEvent, type, page){
+			        	getArticleByPage(page);
+				    }
+				});
+			}
+		});
+	}
+	
+	
+	
+	
+	
+	var top6 =""; 
+	$(function(){
+		$("#top6").empty();
+		$.ajax({
+			url:"/article/getTop6",
+			dataType:"json",
+			success:function(data){
+				for(var i=0;i<6;i++){
+					if(data.content[i] != null)
+					top6 += '<li><a href="/article/'+data.content[i].id+'">'+data.content[i].title+'</a></li>';
+				
+				}
+				$("#top6").append(top6);
+			}
+		});
+	});
+	/*]]>*/
+	</script>
+</body>
+</html>
